@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global News Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more styling control */
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breaking-news-ticker {
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+        }
+        
+        .category-tab.active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-newspaper text-blue-500 text-3xl"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Global News Network</h1>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">World</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Politics</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Business</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Technology</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Sports</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                    <button class="md:hidden p-2 rounded-full hover:bg-gray-100" id="mobile-menu-button">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                    <button class="hidden md:block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-medium">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (hidden by default) -->
+            <div class="md:hidden hidden py-4 border-t" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">World</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Politics</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Business</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Technology</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Sports</a>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-medium mt-2">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="bg-red-600 text-white py-2 overflow-hidden">
+        <div class="container mx-auto px-4 flex items-center">
+            <span class="font-bold mr-4 whitespace-nowrap">BREAKING:</span>
+            <div class="whitespace-nowrap breaking-news-ticker">
+                <span class="mr-8">Global leaders meet to discuss climate change initiatives</span>
+                <span class="mr-8">Stock markets reach all-time high amid economic recovery</span>
+                <span class="mr-8">Major tech company announces revolutionary AI breakthrough</span>
+                <span class="mr-8">Olympic committee announces host city for 2032 games</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-96 md:h-[32rem] bg-gray-800 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c7e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+             alt="Breaking News" class="w-full h-full object-cover">
+        <div class="absolute inset-0 hero-gradient flex items-end pb-12 md:pb-20">
+            <div class="container mx-auto px-4">
+                <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-md mb-2 inline-block">BREAKING</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Global Summit Addresses Climate Crisis with New Commitments</h2>
+                <p class="text-gray-200 mb-6 max-w-2xl">World leaders have pledged to reduce carbon emissions by 50% by 2030 in a historic agreement signed today at the Global Climate Summit in Paris.</p>
+                <div class="flex items-center text-gray-300 text-sm">
+                    <span>By John Smith</span>
+                    <span class="mx-2">•</span>
+                    <span>2 hours ago</span>
+                    <span class="mx-2">•</span>
+                    <span><i class="fas fa-eye mr-1"></i> 24.5k</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Category Tabs -->
+        <div class="flex overflow-x-auto pb-2 mb-6 scrollbar-hide">
+            <div class="flex space-x-1">
+                <button class="category-tab active px-4 py-2 font-medium text-gray-700 whitespace-nowrap">All News</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Politics</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Business</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Technology</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Health</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Entertainment</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Sports</button>
+                <button class="category-tab px-4 py-2 font-medium text-gray-500 hover:text-blue-500 whitespace-nowrap">Science</button>
+            </div>
+        </div>
+
+        <!-- Featured News Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Featured News Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                         alt="Business News" class="w-full h-full object-cover">
+                    <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">BUSINESS</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Major Merger Creates New Tech Giant</h3>
+                    <p class="text-gray-600 mb-4">Two leading technology companies announced a $50 billion merger that will reshape the industry landscape.</p>
+                    <a href="article.html">Read Full article</a>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>By Sarah Johnson</span>
+                        <span>3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured News Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Technology News" class="w-full h-full object-cover">
+                    <span class="absolute top-2 left-2 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded">TECHNOLOGY</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">New AI Model Can Predict Weather with 95% Accuracy</h3>
+                    <p class="text-gray-600 mb-4">Researchers have developed an artificial intelligence system that outperforms traditional weather forecasting methods.</p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>By Michael Chen</span>
+                        <span>5 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured News Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="Sports News" class="w-full h-full object-cover">
+                    <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">SPORTS</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Underdog Team Wins Championship in Stunning Upset</h3>
+                    <p class="text-gray-600 mb-4">The underdogs defeated the reigning champions in a thrilling final that went into overtime.</p>
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>By David Wilson</span>
+                        <span>8 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest News Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b">Latest News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Latest News Card 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden news-card transition duration-300">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8113297c6d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Health News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-bold text-blue-500 mb-1">HEALTH</span>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">New Study Reveals Benefits of Mediterranean Diet</h3>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>By Emily Parker</span>
+                            <span>10 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest News Card 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden news-card transition duration-300">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                             alt="Science News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-bold text-indigo-500 mb-1">SCIENCE</span>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Astronomers Discover Earth-Like Planet in Nearby Star System</h3>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>By Robert Adams</span>
+                            <span>12 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest News Card 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden news-card transition duration-300">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Food News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-bold text-yellow-500 mb-1">FOOD</span>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">World's Best Restaurant Award Goes to Tokyo Eatery</h3>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>By Lisa Wong</span>
+                            <span>14 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest News Card 4 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden news-card transition duration-300">
+                    <div class="relative h-40 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Politics News" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-bold text-red-500 mb-1">POLITICS</span>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">New Legislation Aims to Reform Healthcare System</h3>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>By James Carter</span>
+                            <span>16 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Now Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b">Trending Now</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Trending Article 1 -->
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md overflow-hidden news-card transition duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 h-64 md:h-auto">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Trending News" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:w-1/2 p-6">
+                            <span class="text-xs font-bold text-orange-500 mb-2">TRENDING</span>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Housing Market Shows Signs of Cooling After Record Highs</h3>
+                            <p class="text-gray-600 mb-4">After months of unprecedented growth, real estate experts are seeing the first signs of a market correction in major metropolitan areas.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="w-8 h-8 rounded-full mr-2">
+                                <div>
+                                    <p class="font-medium">Jennifer Lee</p>
+                                    <p>Yesterday • 5 min read</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Sidebar -->
+                <div class="space-y-4">
+                    <!-- Trending Item 1 -->
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl font-bold text-gray-300">1</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Cryptocurrency Market Rebounds After Recent Crash</h4>
+                            <p class="text-sm text-gray-500">2,450 shares</p>
+                        </div>
+                    </div>
+
+                    <!-- Trending Item 2 -->
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl font-bold text-gray-300">2</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Famous Actor Announces Retirement from Film Industry</h4>
+                            <p class="text-sm text-gray-500">1,890 shares</p>
+                        </div>
+                    </div>
+
+                    <!-- Trending Item 3 -->
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl font-bold text-gray-300">3</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">New Electric Vehicle Breaks Distance Record on Single Charge</h4>
+                            <p class="text-sm text-gray-500">1,540 shares</p>
+                        </div>
+                    </div>
+
+                    <!-- Trending Item 4 -->
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl font-bold text-gray-300">4</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Major City Announces Car-Free Downtown Initiative</h4>
+                            <p class="text-sm text-gray-500">1,210 shares</p>
+                        </div>
+                    </div>
+
+                    <!-- Trending Item 5 -->
+                    <div class="flex items-start space-x-3">
+                        <span class="text-2xl font-bold text-gray-300">5</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Breakthrough in Renewable Energy Storage Technology</h4>
+                            <p class="text-sm text-gray-500">980 shares</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="bg-blue-50 rounded-xl p-8 mb-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Stay Updated with Our Newsletter</h2>
+                <p class="text-gray-600 mb-6">Get the latest news delivered directly to your inbox every morning.</p>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition duration-300">
+                        Subscribe
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-3">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">About Us</h3>
+                    <p class="mb-4">Global News Network delivers accurate, timely news from around the world with in-depth analysis and diverse perspectives.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Categories Column -->
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">World</a></li>
+                        <li><a href="#" class="hover:text-white">Politics</a></li>
+                        <li><a href="#" class="hover:text-white">Business</a></li>
+                        <li><a href="#" class="hover:text-white">Technology</a></li>
+                        <li><a href="#" class="hover:text-white">Health</a></li>
+                        <li><a href="#" class="hover:text-white">Entertainment</a></li>
+                        <li><a href="#" class="hover:text-white">Sports</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Column -->
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">Advertise</a></li>
+                        <li><a href="#" class="hover:text-white">Ethics Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Contact Us</h3>
+                    <address class="not-italic mb-4">
+                        123 News Street<br>
+                        New York, NY 10001<br>
+                        United States
+                    </address>
+                    <p class="mb-1"><i class="fas fa-phone-alt mr-2"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@globalnewsnetwork.com</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2023 Global News Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Category tabs functionality
+        const tabs = document.querySelectorAll('.category-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active', 'text-blue-500'));
+                tabs.forEach(t => t.classList.add('text-gray-500'));
+                this.classList.add('active', 'text-blue-500');
+                this.classList.remove('text-gray-500');
+                // Here you would typically load content for the selected category
+            });
+        });
+
+        // Simulate loading more news when scrolling to bottom
+        window.addEventListener('scroll', function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                // In a real app, you would fetch more news here
+                console.log('Load more news...');
+            }
+        });
+
+        // Dark mode toggle (example functionality)
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.className = 'fixed bottom-6 right-6 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition duration-300 z-50';
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('bg-gray-900');
+            document.body.classList.toggle('text-white');
+            // You would need to add more classes to toggle dark mode properly
+        });
+        document.body.appendChild(darkModeToggle);
+    </script>
+</body>
+</html>

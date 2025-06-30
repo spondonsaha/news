@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Reader | Full Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem;
+        }
+        .article-content img {
+            border-radius: 0.5rem;
+            margin: 1.5rem auto;
+            max-width: 100%;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748 !important;
+        }
+        .dark-mode .text-gray-800 {
+            color: #f7fafc !important;
+        }
+        .dark-mode .border-gray-200 {
+            border-color: #4a5568 !important;
+        }
+        .dark-mode .bg-gray-100 {
+            background-color: #4a5568 !important;
+        }
+        .reading-progress {
+            height: 4px;
+            background: #3b82f6;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Reading progress bar -->
+    <div id="reading-progress" class="reading-progress"></div>
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button id="menu-btn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <a href="#" class="text-2xl font-bold text-blue-600">NewsReader</a>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Politics</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Technology</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Business</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Sports</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="dark-mode-toggle" class="text-gray-600 hover:text-blue-600">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="font-increase" class="text-gray-600 hover:text-blue-600">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button id="font-decrease" class="text-gray-600 hover:text-blue-600">
+                    <i class="fas fa-text-width"></i>
+                </button>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Politics</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Technology</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Business</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Sports</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Article header -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Technology</span>
+                <span class="text-gray-500 text-sm">Updated 2 hours ago</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apple Announces Revolutionary New AI Features Coming to iOS 18</h1>
+            
+            <div class="flex items-center space-x-4 mb-6">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="w-10 h-10 rounded-full">
+                <div>
+                    <p class="font-medium text-gray-800">By John Smith</p>
+                    <p class="text-sm text-gray-500">Senior Tech Correspondent</p>
+                </div>
+            </div>
+            
+            <div class="flex justify-between items-center border-t border-b border-gray-200 py-4 mb-6">
+                <div class="flex space-x-4">
+                    <button class="text-gray-500 hover:text-blue-600 flex items-center space-x-1">
+                        <i class="far fa-comment"></i>
+                        <span>24 Comments</span>
+                    </button>
+                    <button class="text-gray-500 hover:text-blue-600 flex items-center space-x-1">
+                        <i class="far fa-bookmark"></i>
+                        <span>Save</span>
+                    </button>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="text-gray-500 hover:text-blue-600">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-blue-600">
+                        <i class="fab fa-facebook"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-blue-600">
+                        <i class="fab fa-linkedin"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Article cover" class="w-full h-auto rounded-lg mb-6">
+            
+            <div class="flex justify-between items-center mb-6">
+                <div class="text-sm text-gray-500">
+                    <span>12 min read</span>
+                    <span class="mx-2">•</span>
+                    <span>4,238 views</span>
+                </div>
+                <button id="audio-reader" class="flex items-center space-x-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">
+                    <i class="fas fa-play"></i>
+                    <span>Listen to article</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Article content -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8 article-content" id="article-content">
+            <p class="font-medium text-lg">In a groundbreaking announcement at WWDC 2024, Apple revealed a suite of artificial intelligence features that will transform how users interact with their iPhones.</p>
+            
+            <h2>The Future of Mobile AI</h2>
+            <p>Apple's new AI system, called "Apple Intelligence," represents the company's most significant software advancement in years. The technology integrates deeply with iOS 18, offering context-aware assistance across the entire operating system.</p>
+            
+            <p>"We're bringing intelligence to the core of the iPhone experience," said Apple CEO Tim Cook during the keynote. "These features will understand you, anticipate your needs, and help you in ways no smartphone has before."</p>
+            
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI technology">
+            
+            <h2>Key Features</h2>
+            <p>The new AI capabilities include:</p>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+                <li><strong>Smart Context:</strong> Your iPhone will understand what you're doing and offer relevant suggestions. For example, if you're reading a recipe, it might automatically set a timer.</li>
+                <li><strong>Proactive Assistance:</strong> The system can predict actions you might want to take next, like suggesting to text someone when you arrive at a location.</li>
+                <li><strong>Enhanced Siri:</strong> The voice assistant becomes dramatically more capable, with the ability to handle complex, multi-step requests.</li>
+                <li><strong>AI Photography:</strong> New computational photography tools can enhance images in ways previously only possible with professional editing software.</li>
+            </ul>
+            
+            <h2>Privacy Focus</h2>
+            <p>Apple emphasized that all AI processing happens either on-device or through a new "Private Cloud Compute" system that maintains the company's strict privacy standards.</p>
+            
+            <p>"We believe artificial intelligence should be intelligent, helpful, and private," said Craig Federighi, Apple's senior vice president of Software Engineering. "With Apple Intelligence, your data stays yours."</p>
+            
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Privacy">
+            
+            <h2>Availability</h2>
+            <p>iOS 18 with Apple Intelligence will be available this fall as a free update for iPhone 12 and later models. The company noted that some features may require the latest iPhone hardware to function optimally.</p>
+            
+            <p>Industry analysts are calling this Apple's most significant software update in years, potentially reshaping expectations for what smartphones can do. "This moves the goalposts for the entire industry," said tech analyst Sarah Johnson. "Apple is showing how AI can be integrated in ways that feel natural and truly useful."</p>
+            
+            <div class="border-t border-gray-200 pt-6 mt-8">
+                <h3 class="text-xl font-bold mb-4">About the Author</h3>
+                <div class="flex items-start space-x-4">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="w-16 h-16 rounded-full">
+                    <div>
+                        <p class="font-medium text-lg">John Smith</p>
+                        <p class="text-gray-600 mb-2">Senior Tech Correspondent covering Apple and mobile technology for over a decade.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comments section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Comments (24)</h2>
+            
+            <div class="mb-6">
+                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Join the discussion..."></textarea>
+                <div class="flex justify-end mt-2">
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">Post</button>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Comment 1 -->
+                <div class="flex space-x-4">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-medium">Jessica Parker</p>
+                                <span class="text-sm text-gray-500">2 hours ago</span>
+                            </div>
+                            <p class="text-gray-700">This is exactly what I've been waiting for from Apple. The privacy-focused approach to AI is what sets them apart from competitors.</p>
+                            <div class="flex space-x-4 mt-3 text-sm">
+                                <button class="text-gray-500 hover:text-blue-600">Reply</button>
+                                <button class="text-gray-500 hover:text-blue-600"><i class="far fa-thumbs-up"></i> 12</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comment 2 -->
+                <div class="flex space-x-4">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-medium">Michael Chen</p>
+                                <span class="text-sm text-gray-500">4 hours ago</span>
+                            </div>
+                            <p class="text-gray-700">I wonder how this compares to what Google and Samsung are doing with AI. The on-device processing is impressive if it works as advertised.</p>
+                            <div class="flex space-x-4 mt-3 text-sm">
+                                <button class="text-gray-500 hover:text-blue-600">Reply</button>
+                                <button class="text-gray-500 hover:text-blue-600"><i class="far fa-thumbs-up"></i> 8</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View more comments -->
+                <div class="text-center">
+                    <button class="text-blue-600 hover:text-blue-800 font-medium">View all 24 comments <i class="fas fa-chevron-down ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related articles -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Related Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Article 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1517430816045-df4b7cef802e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Article" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded mb-2 inline-block">Technology</span>
+                        <h3 class="font-bold text-lg mb-2">Google Unveils Next Generation of AI Assistant</h3>
+                        <p class="text-gray-600 text-sm mb-3">Google's latest AI can now handle complex conversations and remember context across interactions.</p>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">May 15, 2024</span>
+                            <span class="text-gray-500">5 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Article" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded mb-2 inline-block">Innovation</span>
+                        <h3 class="font-bold text-lg mb-2">How AI is Transforming Healthcare Diagnostics</h3>
+                        <p class="text-gray-600 text-sm mb-3">New algorithms are helping doctors detect diseases earlier with greater accuracy than ever before.</p>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">May 10, 2024</span>
+                            <span class="text-gray-500">7 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80" alt="Article" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded mb-2 inline-block">Business</span>
+                        <h3 class="font-bold text-lg mb-2">Microsoft's AI Investments Pay Off With Record Cloud Growth</h3>
+                        <p class="text-gray-600 text-sm mb-3">Azure AI services drive 28% revenue increase as enterprises adopt AI solutions at scale.</p>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">May 5, 2024</span>
+                            <span class="text-gray-500">4 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NewsReader</h3>
+                    <p class="text-gray-400">Delivering accurate, timely news from around the world since 2010.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">World</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Business</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Technology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sports</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Advertise</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Ethics Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Subscribe</h4>
+                    <p class="text-gray-400 mb-4">Get the latest news delivered to your inbox.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md w-full text-gray-800 focus:outline-none">
+                        <button class="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700">Subscribe</button>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 NewsReader. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const html = document.documentElement;
+        
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (html.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+        
+        // Font size adjustment
+        const articleContent = document.getElementById('article-content');
+        const fontSizeIncrease = document.getElementById('font-increase');
+        const fontSizeDecrease = document.getElementById('font-decrease');
+        
+        let fontSize = 1; // Default font size multiplier
+        
+        fontSizeIncrease.addEventListener('click', () => {
+            if (fontSize < 1.5) {
+                fontSize += 0.1;
+                articleContent.style.fontSize = `${fontSize}rem`;
+            }
+        });
+        
+        fontSizeDecrease.addEventListener('click', () => {
+            if (fontSize > 0.8) {
+                fontSize -= 0.1;
+                articleContent.style.fontSize = `${fontSize}rem`;
+            }
+        });
+        
+        // Audio reader
+        const audioReader = document.getElementById('audio-reader');
+        let isReading = false;
+        let speech = null;
+        
+        audioReader.addEventListener('click', () => {
+            if (!isReading) {
+                // Start reading
+                const articleText = document.querySelector('.article-content').innerText;
+                speech = new SpeechSynthesisUtterance(articleText);
+                speech.rate = 1;
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+                
+                audioReader.innerHTML = '<i class="fas fa-pause"></i><span>Pause</span>';
+                isReading = true;
+                
+                speech.onend = function() {
+                    audioReader.innerHTML = '<i class="fas fa-play"></i><span>Listen to article</span>';
+                    isReading = false;
+                };
+            } else {
+                // Pause reading
+                window.speechSynthesis.cancel();
+                audioReader.innerHTML = '<i class="fas fa-play"></i><span>Listen to article</span>';
+                isReading = false;
+            }
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Reading progress bar
+        const readingProgress = document.getElementById('reading-progress');
+        
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const progress = (scrollTop / (documentHeight - windowHeight)) * 100;
+            readingProgress.style.width = `${progress}%`;
+        });
+        
+        // Simulate article view count increase
+        let viewCount = 4238;
+        setInterval(() => {
+            viewCount++;
+            document.querySelector('span:nth-child(3)').textContent = `${viewCount.toLocaleString()} views`;
+        }, 10000);
+    </script>
+</body>
+</html>
